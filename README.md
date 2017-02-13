@@ -36,46 +36,48 @@ each to do
 
 The camera calibration process includes the use of 20 images of a chessboard taken from different angles and distances. This process throws a list of the 3D coordinates of the inner corners (object points) in the chessboard along with a list of the corresponding 2D coordinates (image points).
 <br>
-![png](data.png)
+![png](resouse/1.png)
 
-### 2.对原始图像应用失真校正 Apply a distortion correction to raw images.
-根据相机校准矩阵和失真系数对原始图像应用失真校正
+### 2.Apply a distortion correction to raw images.
+Apply distortion correction to the original image based on the camera calibration matrix and the distortion factor
 <br>
-![png](data.png)
+![png](resouse/2.png)
 
-### 3.使用颜色变换，渐变等，创建阈值二进制图像。 Use color transforms, gradients, etc., to create a thresholded binary image.
+### 3.Use color transforms, gradients, etc., to create a thresholded binary image.
 The gradient thresholding step is aimed to identify edges in the image. Since the lane lines are basically edges in the road, defining a proper thresholding with the corresponding parameters will help to define the lane lines.
 
 <br>
   the objective is to identify pixels of a given color. To do so, ranges for the RGB channels are defined. 
   <br>
- ![png](data.png)
+![png](resouse/3.png)![png](resouse/3_1.png)
 
-### 4.应用透视变换来纠正二进制图像（“鸟瞰视图”）Apply a perspective transform to rectify binary image ("birds-eye view").
+### 4.Apply a perspective transform to rectify binary image ("birds-eye view").
 The images of the road have a perspective which makes the parallel lines to meet in a vanishing point. Therefore, the images need to be transformed so the lane lines are displayed parallel to each other. To do so, four points in the original image are defined; these points form a trapezoid. Other four points are defined; these points form a rectangle. The transformation consists on mapping the former points to the latter ones, so the image is transformed accordingly, and the lane lines look parallel
 <br>
-![png](data.png)
+![png](resouse/4.png)
 
-### 5.检测车道像素并适合查找车道边界Detect lane pixels and fit to find the lane boundary.
+### 5.Detect lane pixels and fit to find the lane boundary.
 After separating the left and right lane line pixels, the lane boundary can be found by fitting to a second order polynomial. This fitting process can be done using the function
 <br>
 fit_lane_line(lr_binary_images)
 where lr_binary_images is the binary image for the left and right lane lines. This function is based on the numpy function np.polyfit. This shows the fitted lane lines
 <br>
-![png](data.png)
-### 6.确定车道的曲率和相对于中心的车辆位置 Determine the curvature of the lane and vehicle position with respect to center.
-可以通过评估图像底部的拟合函数来计算相对于中心的位置，并将其与图像的中心进行比较
+![png](resouse/5.png)![png](resouse/5_1.png)
+
+### 6.Determine the curvature of the lane and vehicle position with respect to center.
+The position relative to the center can be calculated by evaluating the fitting function at the bottom of the image and compared it to the center of the image
 <br>
 
-![png](data.png)
+![png](resouse/6.png)
 
-### 7.将检测到的车道边界扭曲回原始图像 Warp the detected lane boundaries back onto the original image.
+
+### 7. Warp the detected lane boundaries back onto the original image.
 
 Once we detect the lane in the "bird-eye" view, we can wrap that back to the original image perspective.  The information of the lane curvature radius and vehicle position can be printed onto the image using
 
 <br>
 
-![png](data.png)
+![png](resouse/7.png)
 
 ### 8.Pipeline (video)
 This pipeline for a single image can be applied to the video the same way.
