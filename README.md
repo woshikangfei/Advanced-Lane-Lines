@@ -92,6 +92,8 @@ The project consists of the following steps
 - *The detected lane boundary is twisted back to the original image.*
 - *The visual display of the exit lane boundary and the numerical estimate of the lane curvature and the vehicle position.*
 <br>
+<br>
 I think the hardest part is to detect lane pixels and be suitable for finding lane borders. Determine the curvature of the lane and the position relative to the center of the vehicle.
+<br>
 <br>
 Through this project, I learned a lot about various threshold techniques, combined colors and gradient filters,
