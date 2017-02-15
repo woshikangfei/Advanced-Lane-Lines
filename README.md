@@ -81,4 +81,17 @@ Once we detect the lane in the "bird-eye" view, we can wrap that back to the ori
 
 ### 8.Pipeline (video)
 This pipeline for a single image can be applied to the video the same way.
+### 9.Discussion
+The project consists of the following steps
 
+- *Apply distortion correction to the original image.*
+- *Create a threshold binary image using color transformations, gradients, and so on.*
+- *Apply a perspective transformation to correct the binary image ("bird's eye view").*
+- *Detects lane pixels and is suitable for finding lane boundaries.*
+- *Determine the curvature of the lane and the position relative to the center of the vehicle.*
+- *The detected lane boundary is twisted back to the original image.*
+- *The visual display of the exit lane boundary and the numerical estimate of the lane curvature and the vehicle position.*
+<br>
+I think the hardest part is to detect lane pixels and be suitable for finding lane borders. Determine the curvature of the lane and the position relative to the center of the vehicle.
+<br>
+Through this project, I learned a lot about various threshold techniques, combined colors and gradient filters,
